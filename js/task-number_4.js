@@ -4,13 +4,27 @@ class StringBuilder {
   }
   get value() {
     return this._value;
-    }
-    set append(str) { 
-        this.str = str;
-        
-    };
-    set prepend(str) { };
-    set pad(str) { };
+  }
+  append(str) {
+    this._value += str;
+  }
+  prepend(str) {
+    const res = (str += this._value);
+    this._value = res;
+  }
+  pad(str) {
+    this.str = str;
+    this._value = str + this._value + str;
+  }
 }
 const builder = new StringBuilder(".");
+console.log(builder.value);
+
+builder.append("^");
+console.log(builder.value);
+
+builder.prepend("^");
+console.log(builder.value);
+
+builder.pad("=");
 console.log(builder.value);
