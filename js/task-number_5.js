@@ -5,56 +5,46 @@ class Car {
       speed: 100,
       isOn: true,
       distance: 120000,
-      price: 1200000000,
+      price: 12000,
     };
     const values = Object.values(car);
     console.log(values);
   }
-  /*
-   * Конструктор отримує об'єкт налаштувань.
-   *
-   * Додай властивості майбутнього екземпляра класу:
-   * speed - поточна швидкість, початкова 0
-   * price - ціна автомобіля
-   * maxSpeed - максимальна швидкість
-   * isOn - заведений автомобіль, значення true або false. Спочатку false
-   * distance - загальний кілометраж, спочатку 0
-   */
   constructor({ speed, price, maxSpeed, isOn, distance } = {}) {
     this.speed = 0;
-    this.price = 1200000000;
-    this.maxSpeed = 420;
+    this.price = 8000;
+    this.maxSpeed = 300;
     this.isOn = false;
     this.distance = 0;
     console.log({ speed, price, maxSpeed, isOn, distance });
   }
-
   /*
    * Додай геттер і сеттер для властивості price,
    * який буде працювати з властивістю ціни автомобіля.
    */
-  get GetPrice() {
+
+  getPrice() {
+    console.log(this.price);
     return this.price;
   }
+
   setPrice(_price) {
     const insurance = 1000;
     this.price += insurance;
     console.log(this.price);
   }
+
   /*
    * Додай код для того, щоб завести автомобіль
    * Записує у властивість isOn значення true
    */
+
   turnOn() {
-    if (this.speed > 100) {
+    if (this.speed < 40) {
       this.isOn = true;
-      console.log(this.turnOn);
+      console.log(this.isOn);
     } else if (this.isOn) {
       return true;
-    } else {
-      console.log(
-        "As speed is less than 100 km/h, there isnt any sense to drive. Too borind "
-      );
     }
   }
 
@@ -63,34 +53,61 @@ class Car {
    * Записує у властивість isOn значення false,
    * і скидає поточну швидкість в 0
    */
-  turnOff() {}
+  turnOff() {
+    if (this.speed == 0) {
+      this.isOn = false;
+    } else {
+      return true;
+    }
+  }
 
   /*
    * Додає до властивості speed отримане значення,
    * за умови, що результуюча швидкість
    * не більше, ніж значення властивості maxSpeed
    */
-  accelerate(value) {}
+
+  accelerate(value) {
+    this.speed += value;
+    console.log(`This is speed after adding: ${this.speed}`);
+    if (this.speed > this.maxSpeed) {
+      console.log("You can add this numbers, something wrong");
+    } else {
+      return false;
+    }
+  }
 
   /*
    * Забирає від властивості speed отримане значення,
    * за умови, що результуюча швидкість не менше нуля
    */
-  decelerate(value) {}
+  decelerate(value) {
+    if (this.speed > 0) {
+      this.speed -= value;
+    } else {
+      return false;
+    }
+  }
 
   /*
    * Додає в поле distance кілометраж (hours * speed),
    * але тільки в тому випадку, якщо машина заведена!
    */
-  drive(hours) {}
+  drive(hours) {
+    if (this.isOn) {
+      this.distance = hours * this.speed;
+      console.log(this.distance);
+    } else {
+      console.log("object");
+      return false;
+    }
+  }
 }
 
 const mustang = new Car({ maxSpeed: 200, price: 2000 });
-mustang.setPrice();
-// mustang.setPrice();
 // Car.getSpecs(mustang);
-// mustang.turnOn();
-// mustang.accelerate(50);
+mustang.turnOn();
+mustang.accelerate(50);
 // mustang.drive(2);
 
 // Car.getSpecs(mustang);
