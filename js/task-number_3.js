@@ -1,7 +1,7 @@
 class Storage {
   constructor(prodArr) {
     this.prodArr = prodArr;
-    prodArr = [];
+    // prodArr = [];
   }
   getItems() {
     return this.prodArr;
